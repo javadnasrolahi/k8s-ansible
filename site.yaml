@@ -1,8 +1,12 @@
 ---
-- hosts: localhost
+- name: site.yaml playbook
+  hosts: k8s
   # vars_files:
   #   - roles/k8s/vars/vars.yml
 
   roles:
-    # - dns
+    - dns
     - docker
+    # - hosts
+    # - haproxy
+    # - k8s-prerequisites

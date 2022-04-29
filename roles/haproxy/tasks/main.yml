@@ -1,0 +1,29 @@
+---
+# tasks file for haproxy
+- name: install HAproxy package  
+  become: true
+  apt:
+    name: haproxy
+    state: latest
+    update_cache: yes
+
+- name: copy config file 
+  become: true
+  vars:
+    my_file: /etc/haproxy/haproxy.cfg
+    my_template: templates/haproxy.j2
+  template:
+    src: "{{ my_template }}"
+    dest: "{{ my_file }}"
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: restart haproxy service
+  become: true
+  systemd:
+    name: haproxy
+    state: reloaded
+
+
+  

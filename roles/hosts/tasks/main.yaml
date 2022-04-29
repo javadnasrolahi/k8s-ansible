@@ -1,0 +1,12 @@
+---
+- name: Create "{{ my_file }}"
+  become: true
+  vars:
+    my_file: /etc/hosts
+    my_template: templates/hosts.j2
+  template:
+    src: "{{ my_template }}"
+    dest: "{{ my_file }}"
+    owner: root
+    group: root
+    mode: "644"

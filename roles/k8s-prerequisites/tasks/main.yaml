@@ -1,0 +1,32 @@
+---
+- name: Disable SELinux
+  become: true
+  selinux:
+    state: disabled
+
+- name: Letting iptables see bridged traffic
+  become: true
+  copy:
+    src: ./files/k8s.conf
+    dest: /etc/sysctl.d/k8s.conf
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Reload sysctl config for iptables
+  become: true
+  command: sysctl --system
+
+- name: Add k8s GPG apt Key
+  become: true
+  shell: 'echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list'
+
+- name: Install kubeadm kubelet kubectl packages
+  become: true
+  apt: 
+    name: 
+    - kubeadm
+    - kubelet
+    - kubectl 
+    state: latest
+    update_cache: yes
