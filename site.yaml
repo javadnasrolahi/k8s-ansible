@@ -1,0 +1,8 @@
+---
+- hosts: localhost
+  # vars_files:
+  #   - roles/k8s/vars/vars.yml
+
+  roles:
+    # - dns
+    - docker
