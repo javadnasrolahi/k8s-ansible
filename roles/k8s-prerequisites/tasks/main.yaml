@@ -1,8 +1,9 @@
 ---
-- name: Disable SELinux
-  become: true
-  selinux:
-    state: disabled
+#https://docs.ansible.com/ansible/latest/collections/ansible/posix/selinux_module.html
+# - name: Disable SELinux
+#   become: true
+#   selinux:
+#     state: disabled
 
 - name: Letting iptables see bridged traffic
   become: true
@@ -15,11 +16,20 @@
 
 - name: Reload sysctl config for iptables
   become: true
-  command: sysctl --system
+  shell: sysctl --system
 
-- name: Add k8s GPG apt Key
+- name: Disable SWAP
   become: true
-  shell: 'echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list'
+  shell: swapoff -a
+
+- name: Google Cloud public signing key
+  become: true
+  shell: curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+
+
+- name: Add the Kubernetes apt repository
+  become: true
+  shell: echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 
 - name: Install kubeadm kubelet kubectl packages
   become: true
@@ -30,3 +40,4 @@
     - kubectl 
     state: latest
     update_cache: yes
+

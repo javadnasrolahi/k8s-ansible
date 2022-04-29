@@ -5,8 +5,9 @@
   #   - roles/k8s/vars/vars.yml
 
   roles:
-    - dns
-    - docker
+    - add-shecan
+    # - docker
     # - hosts
     # - haproxy
-    # - k8s-prerequisites
+    - k8s-prerequisites
+    - remove-shecan
