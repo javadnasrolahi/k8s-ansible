@@ -1,0 +1,16 @@
+---
+- name: Generated token - 1.
+  local_action: shell sed -n 83,84p ./token > ./workertoken
+
+- name: Copy master token
+  become: true
+  copy:
+    src: ./workertoken
+    dest: /tmp/join-worker-command.sh
+    owner: root
+    group: root
+    mode: '0777'
+
+- name: Add new Kubernetes master member
+  become: true
+  command: sh /tmp/join-worker-command.sh

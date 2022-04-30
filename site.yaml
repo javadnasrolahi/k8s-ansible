@@ -1,6 +1,6 @@
 ---
 - name: site.yaml playbook
-  hosts: k8s
+  hosts: member
   # vars_files:
   #   - roles/k8s/vars/vars.yml
 
@@ -9,5 +9,7 @@
     # - docker
     # - hosts
     # - haproxy
-    - k8s-prerequisites
-    - remove-shecan
+    # - k8s-prerequisites
+    # - leader_master
+    - master-member
+    # - remove-shecan

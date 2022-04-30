@@ -11,6 +11,7 @@
     # 127.0.0.53 is the systemd-resolved stub resolver.
     # run "resolvectl status" to see details about the actual nameservers.
 
+    # nameserver 185.51.200.2
     nameserver 178.22.122.100
     nameserver 8.8.8.8
     nameserver 127.0.0.53" > /etc/resolv.conf
