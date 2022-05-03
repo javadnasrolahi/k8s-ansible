@@ -11,6 +11,6 @@
     group: root
     mode: '0777'
 
-- name: Add new Kubernetes master member
+- name: Add new Kubernetes worker to cluster
   become: true
   command: sh /tmp/join-worker-command.sh
