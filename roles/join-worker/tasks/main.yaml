@@ -1,6 +1,6 @@
 ---
 - name: Generated token - 1.
-  local_action: shell sed -n 83,84p ./token > ./workertoken
+  local_action: shell sed -n 82,84p ./token > ./workertoken
 
 - name: Copy master token
   become: true
