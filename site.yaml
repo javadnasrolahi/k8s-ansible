@@ -1,18 +1,13 @@
 ---
-- name: site.yaml playbook
-  hosts: worker 
-  # vars_files:
-  #   - roles/k8s/vars/vars.yml
+- import_playbook: pre-requisites.yaml
 
-  roles:
-    # - add-shecan
-    # - prerequisties
-    # - hosts
-    # - docker
-    # - haproxy
-    # - k8s-prerequisites
-    # - leader_ master
-    # - master-member
-    # - join-worker
-    # - k8s-manifest
-    # - remove-shecan
+- import_playbook: haproxy.yaml
+
+- import_playbook: setup-k8s-cluster.yaml
+
+- import_playbook: deploy-manifest.yaml
+
+- import_playbook: after-install.yaml
+
+
+
