@@ -1,0 +1,14 @@
+---
+- name: Install required system packages
+  become: true
+  apt: 
+    name: 
+    - ca-certificates
+    - curl
+    - gnupg 
+    - lsb-release
+    - htop 
+    - tree
+    - python3-pip
+    state: latest
+    update_cache: yes

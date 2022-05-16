@@ -1,0 +1,74 @@
+---
+# tasks file for k8s-manifest
+- name: 
+  shell: 
+    pip3 install kubernetes==23.6.0
+
+- name: clone manifest repo
+  git:
+    repo: https://github.com/sosfullking/k8s-manifest.git
+    dest: /home/ubuntu/w/
+    clone: yes
+    update: yes
+
+- name: create zookeeper manifest 
+  kubernetes.core.k8s: 
+    state: present
+    namespace: default
+    src: /home/ubuntu/w/manifest/zoo-manifest.yaml
+
+- name: create kafka manifest 
+  kubernetes.core.k8s: 
+    state: present
+    namespace: default
+    src: /home/ubuntu/w/manifest/kafka-manifest.yaml
+
+- name: create send epoch manifest 
+  kubernetes.core.k8s: 
+    state: present
+    namespace: default
+    src: /home/ubuntu/w/manifest/firstScript-manifest.yaml
+
+- name: create convert epoch manifest 
+  kubernetes.core.k8s: 
+    state: present
+    namespace: default
+    src: /home/ubuntu/w/manifest/secondScript-manifest.yaml
+
+- name: create prometheus config map 
+  kubernetes.core.k8s: 
+    state: present
+    namespace: default
+    src: /home/ubuntu/w/manifest/prometheus-cm.yaml
+
+- name: create prometheus manifest 
+  kubernetes.core.k8s: 
+    state: present
+    namespace: default
+    src: /home/ubuntu/w/manifest/prometheus-manifest.yaml
+
+- name: create grafana manifest 
+  kubernetes.core.k8s: 
+    state: present
+    namespace: default
+    src: /home/ubuntu/w/manifest/grafana-manifest.yaml  
+
+
+
+
+
+
+
+# - name: create kafka manifest 
+#   kubernetes.core.k8s: 
+#     state: present
+#     namespace: default
+#     src: /tmp/foo.yaml
+
+# # - name: create foo configmap 
+# #   kubernetes.core.k8s: 
+# #     state: present
+# #     namespace: default
+# #     src: /tmp/foo.yaml
+
+#       # definition: "{{ lookup('./templates', 'foo.yaml') | from_yaml }}"

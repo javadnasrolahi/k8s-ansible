@@ -1,9 +1,17 @@
 ---
-#https://docs.ansible.com/ansible/latest/collections/ansible/posix/selinux_module.html
-# - name: Disable SELinux
-#   become: true
-#   selinux:
-#     state: disabled
+- name: comment disabled_plugins = ['cri'] in /etc/containerd/config.toml
+  become: true
+  replace:
+      path: /etc/containerd/config.toml
+      regexp: '^disabled_plugins'
+      replace: '#disabled_plugins'
+
+- name: Restart containerd service 
+  become: true
+  systemd:
+    name: containerd
+    state: restart
+
 
 - name: Letting iptables see bridged traffic
   become: true

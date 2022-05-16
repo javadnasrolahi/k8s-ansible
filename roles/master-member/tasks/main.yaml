@@ -1,5 +1,5 @@
 - name: Generated token - 1.
-  local_action: shell sed -n 73,75p ./token > ./mastertoken
+  local_action: shell sed -n 72,75p ./token > ./mastertoken
 
 - name: Copy master token
   become: true
