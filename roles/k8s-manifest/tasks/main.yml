@@ -11,6 +11,18 @@
     clone: yes
     update: yes
 
+- name: create prom PV 
+  kubernetes.core.k8s: 
+    state: present
+    namespace: default
+    src: /home/ubuntu/w/PV/prom-pv.yaml
+
+- name: create kafka PV 
+  kubernetes.core.k8s: 
+    state: present
+    namespace: default
+    src: /home/ubuntu/w/PV/kafka-pv.yaml
+
 - name: create zookeeper manifest 
   kubernetes.core.k8s: 
     state: present
@@ -52,23 +64,3 @@
     state: present
     namespace: default
     src: /home/ubuntu/w/manifest/grafana-manifest.yaml  
-
-
-
-
-
-
-
-# - name: create kafka manifest 
-#   kubernetes.core.k8s: 
-#     state: present
-#     namespace: default
-#     src: /tmp/foo.yaml
-
-# # - name: create foo configmap 
-# #   kubernetes.core.k8s: 
-# #     state: present
-# #     namespace: default
-# #     src: /tmp/foo.yaml
-
-#       # definition: "{{ lookup('./templates', 'foo.yaml') | from_yaml }}"
