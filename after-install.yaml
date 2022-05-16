@@ -1,0 +1,5 @@
+---
+- name: remove shecan
+  hosts: cluster
+  roles:
+    - remove-shecan

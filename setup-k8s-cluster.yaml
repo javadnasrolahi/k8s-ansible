@@ -1,0 +1,20 @@
+---
+- name:  install pre-requisites
+  hosts: k8s
+  roles:
+    - k8s-prerequisites
+
+- name: init leader
+  hosts: leader 
+  roles:
+    - leader_ master
+
+- name: join masters
+  hosts: member
+  roles:
+    - master-member
+    
+- name: join workers 
+  hosts: worker
+  roles:
+    - join-worker
