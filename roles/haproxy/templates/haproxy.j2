@@ -61,7 +61,7 @@ defaults
 # main frontend which proxys to the backends
 #---------------------------------------------------------------------
 frontend kubernetes-frontend
-   bind 192.168.8.100:6443
+   bind 192.168.2.100:6443
    mode tcp
    option tcplog
    default_backend kubernetes-backend
@@ -74,9 +74,10 @@ backend kubernetes-backend
 #    option tcplog
     option tcp-check
     balance roundrobin
-    server kmaster1 192.168.8.101:6443 check fall 3 rise 2
-    server kmaster2 192.168.8.102:6443 check fall 3 rise 2
+    server kmaster1 192.168.2.101:6443 check fall 3 rise 2
+    server kmaster2 192.168.2.102:6443 check fall 3 rise 2
+    server kmaster3 192.168.2.103:6443 check fall 3 rise 2
 #    default-server inter 10s downinter 5s rise 2 fall 2 slowstart 60s maxconn 250 maxqueue 256 weight 100
 
-    # server master01   192.168.8.101:6443 check
-    # server master02   192.168.8.102:6443 check
+    # server master01   192.168.2.101:6443 check
+    # server master02   192.168.2.102:6443 check
