@@ -12,30 +12,19 @@ We create a private network so all server are reachabe for each other.
 
 ![alt text](https://github.com/sosfullking/k8s-ansible/blob/main/README/HLD2.JPG?raw=true)
 
-## Run Pre-requisites
-Uncomment "add-shecan", "prerequisties". "hosts" roles and set  ```hosts: cluster``` and run the playbook from workstation node. 
+## Ansible 
+the site.yaml playbook consists of 5 playbool
+### 1. pre-requisites.yaml
+install pre requisties on all nodes.
 
-## Setup HAproxy
-Uncomment "haproxy" role and set  ```hosts: haproxy``` and run the playbook from workstation node. 
+### 2. haproxy.yaml
+Insall and configure HAproxy on haproxu node.
 
-## Setup Kubernetes Cluster
-### 1. Install Pre-requisites
-Uncomment "k8s-prerequisites" role and set  ```hosts: cluster``` and run the playbook.
+### 3. setup-k8s-cluster.yaml
+This playbook will install kubernetes cluster with three master and two worker.
 
-### 1. Install Pre-requisites
-Uncomment "k8s-prerequisites" role and set  ```hosts: cluster``` and run the playbook.
+### 4. deploy-manifest.yaml
+Deploy kafka, zookeeper, prometheus, grafana and two simple python script to the cluster.
 
-### 2. Initialize Leader 
-Uncomment "leader_ master" role and set  ```hosts: leader``` and run the playbook.
-
-### 3. Join Masters
-Uncomment "master-member" role and set  ```hosts: member``` and run the playbook.
-
-### 4. Join Workers
-Uncomment "join-worker" role and set  ```hosts: worker``` and run the playbook.
-
-## Deploy Manifest
-Uncomment "k8s-manifest" role and set  ```hosts: leader``` and run the playbook.
-
-## Remove Shecan
-Uncomment "add-shecan" and set  ```hosts: cluster``` and run the playbook.
+### 5. after-install
+Remove shecan DNS from all cluster nodes.
