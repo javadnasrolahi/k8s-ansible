@@ -6,7 +6,7 @@ In this project we will use ansible and kubeadm to create a high available kuber
 ## Requirements
 We need three master node, two worker node, one loadbalancer node and a workstation. 
 
-We take server with 2 core CPU and 2GB RAM. 
+All servers have 2 core CPU and 2GB RAM. 
 
 We create a private network so all server are reachabe for each other. 
 
