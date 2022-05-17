@@ -15,10 +15,10 @@ We create a private network so all server are reachabe for each other.
 ## Ansible 
 the site.yaml playbook consists of 5 playbool
 ### 1. pre-requisites.yaml
-install pre requisties on all nodes.
+Install pre requisties on all nodes.
 
 ### 2. haproxy.yaml
-Insall and configure HAproxy on haproxu node.
+Insall and configure HAproxy on haproxy node.
 
 ### 3. setup-k8s-cluster.yaml
 This playbook will install kubernetes cluster with three master and two worker.
